@@ -1,6 +1,6 @@
 {
   "name": "stack-source-map",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Add source map support for error stack (Chrome only)",
   "main": "index.js",
   "scripts": {
