@@ -1,8 +1,12 @@
 # Stack-source-map
 
 Attamp to make error stack works with source-map in browser, only Chrome supportted yet.
+<img width="529" alt="screen shot 2015-11-24 at 00 23 59" src="https://cloud.githubusercontent.com/assets/251450/11343360/afb271bc-9246-11e5-9c60-6a501a2f2b5f.png">
 
 The code mostly from [evanw/node-source-map-support](https://github.com/evanw/node-source-map-support), but simplified to works with browser only and fixed to support all source map mode of [webpack](https://webpack.github.io/docs/configuration.html#devtool)
+
+May not works with babel yet,  need more work.
+
 
 TODO: some test
 
