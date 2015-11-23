@@ -125,6 +125,7 @@ function mapSourcePosition(position) {
     var urlAndMap = retrieveSourceMap(position.source, position);
     if (urlAndMap) {
       var source = urlAndMap.url ? position.source : urlAndMap.map.sources[0].replace(/\?.*$/, '')
+      position.source = source
       sourceMap = sourceMapCache[source] = {
         url: urlAndMap.url,
         map: new SourceMapConsumer(urlAndMap.map)
