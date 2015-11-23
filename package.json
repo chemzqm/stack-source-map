@@ -1,0 +1,28 @@
+{
+  "name": "stack-source-map",
+  "version": "0.0.1",
+  "description": "Add source map support for error stack (Chrome only)",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/chemzqm/stack-source-map.git"
+  },
+  "keywords": [
+    "stack",
+    "source",
+    "map"
+  ],
+  "author": "chemzqm@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chemzqm/stack-source-map/issues"
+  },
+  "homepage": "https://github.com/chemzqm/stack-source-map#readme",
+  "dependencies": {
+    "path-browserify": "0.0.0",
+    "source-map": "^0.5.3"
+  }
+}
