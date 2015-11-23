@@ -75,7 +75,7 @@ function retrieveSourceMapURL(source, position) {
   var lastMatch, match;
   while (match = re.exec(fileData)) lastMatch = match; // eslint-disable-line
   if (!lastMatch) {
-    var line = contents.split(/(?:\r\n|\r|\n)/)[line - 1];
+    var line = fileData.split(/(?:\r\n|\r|\n)/)[position.line - 1];
     line = line.replace(/^.*sourceMappingURL=/, '').replace(/"\s*\);\s*$/,'')
     if (reSourceMap.test(line)) return line;
     return null;
