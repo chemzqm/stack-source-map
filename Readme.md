@@ -32,7 +32,7 @@ var entry = [
 
 ## API
 
-### stackSourceMap(option)
+### stackSourceMap([option])
 
 * `option.empty` empty cache between operations if true, default false
 
