@@ -36,3 +36,8 @@ var entry = [
 
 * `option.empty` empty cache between operations if true, default false
 
+## Test babel with webpack
+
+    npm install
+    node server
+    open http://localhost:8080/bundle

@@ -5,11 +5,11 @@ var WebpackDevServer = require('webpack-dev-server')
 var port = 8080
 var config = {
   entry: [
-    '../register.js',
+    './register.js',
     'babel-polyfill',
     'webpack-dev-server/client?http://localhost:' + port,
     'webpack/hot/dev-server',
-    'mocha!./test.babel.js'
+    'mocha!./test/test.babel.js'
   ],
   output: {
     filename: 'bundle.js'
