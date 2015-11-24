@@ -355,4 +355,8 @@ exports.getErrorSource = getErrorSource;
 exports.mapSourcePosition = mapSourcePosition;
 exports.retrieveSourceMap = retrieveSourceMap;
 
-Error.prepareStackTrace = prepareStackTrace;
+if (/^file/i.test(location.protocol)) {
+  console.warn('stack-source-map not works on file protocol')
+} else {
+  Error.prepareStackTrace = prepareStackTrace;
+}
