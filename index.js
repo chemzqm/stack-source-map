@@ -58,6 +58,7 @@ function retrieveSourceMapURL(source, position) {
         fileData = xhr.responseText;
         fileContentsCache[source] = fileData;
       }
+      if (xhr.status !== 200) return null
     } catch (e) { return null }
 
     // Support providing a sourceMappingURL via the SourceMap header
@@ -88,7 +89,7 @@ function retrieveSourceMapURL(source, position) {
 // JSON object (ie, it must be a valid argument to the SourceMapConsumer
 // constructor).
 function retrieveSourceMap(source, position) {
-  if (/^script/.test(source)) return null;
+  if (/^script:\/\/$/.test(source)) return null;
   var sourceMappingURL = retrieveSourceMapURL(source, position);
   if (!sourceMappingURL) return null;
 
@@ -290,12 +291,12 @@ function wrapCallSite(frame) {
   // Most call sites will return the source file from getFileName(), but code
   // passed to eval() ending in "//# sourceURL=..." will return the source file
   // from getScriptNameOrSourceURL() instead
+  if (frame.isNative()) return frame
   var source = frame.getFileName() || frame.getScriptNameOrSourceURL();
   var position
   if (source) {
     var line = frame.getLineNumber();
     var column = frame.getColumnNumber() - 1;
-
     position = mapSourcePosition({
       source: source,
       line: line,
@@ -383,3 +384,4 @@ module.exports = function (option) {
   }
   if (option.hasOwnProperty('empty')) emptyCacheBetweenOperations = option.empty
 }
+
