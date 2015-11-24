@@ -152,10 +152,10 @@ function mapSourcePosition(position) {
   // Resolve the source URL relative to the URL of the source map
   if (sourceMap && sourceMap.map) {
     var pos
-    if (position.orig) {
+    if (position.eval) {
       pos = {
-        line: position.orig[0],
-        column: position.orig[1]
+        line: position.eval[0],
+        column: position.eval[1]
       }
     } else {
       pos = {
@@ -192,7 +192,7 @@ function getEvalPosition(origin, ln, cn) {
       source: match[2],
       line: match[3],
       column: match[4] - 1,
-      orig:[ln, cn]
+      eval:[ln, cn]
     });
 
     return position
