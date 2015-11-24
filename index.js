@@ -48,27 +48,26 @@ function supportRelativeURL(file, url) {
 }
 
 function retrieveSourceMapURL(source, position) {
-  var fileData;
-  try {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', source, false);
-    xhr.send(null);
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      fileData = xhr.responseText;
+  var fileData = fileContentsCache[source];
+  if (!fileData) {
+    try {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', source, false);
+      xhr.send(null);
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        fileData = xhr.responseText;
+        fileContentsCache[source] = fileData;
+      }
+    } catch (e) { return null }
+
+    // Support providing a sourceMappingURL via the SourceMap header
+    var sourceMapHeader = xhr.getResponseHeader('SourceMap') ||
+                          xhr.getResponseHeader('X-SourceMap');
+    if (sourceMapHeader) {
+      return sourceMapHeader;
     }
-  } catch (e) {
-    return null
   }
 
-  // Support providing a sourceMappingURL via the SourceMap header
-  var sourceMapHeader = xhr.getResponseHeader('SourceMap') ||
-                        xhr.getResponseHeader('X-SourceMap');
-  if (sourceMapHeader) {
-    return sourceMapHeader;
-  }
-  // Get the URL of the source map
-   // fileData = retrieveFile(source);
-  //        //# sourceMappingURL=foo.js.map                       /*# sourceMappingURL=foo.js.map */
   var re = /(?:\/\/[@#][ \t]+sourceMappingURL=([^\s'"]+?)[ \t]*$)|(?:\/\*[@#][ \t]+sourceMappingURL=([^\*]+?)[ \t]*(?:\*\/)[ \t]*$)/mg;
   // Keep executing the search to find the *last* sourceMappingURL to avoid
   // picking up sourceMappingURLs from comments, strings, etc.
@@ -355,8 +354,12 @@ exports.getErrorSource = getErrorSource;
 exports.mapSourcePosition = mapSourcePosition;
 exports.retrieveSourceMap = retrieveSourceMap;
 
-if (/^file/i.test(location.protocol)) {
-  console.warn('stack-source-map not works on file protocol')
-} else {
-  Error.prepareStackTrace = prepareStackTrace;
+module.exports = function (option) {
+  option = option || {}
+  if (/^file/i.test(location.protocol)) {
+    console.warn('stack-source-map not works on file protocol')
+  } else {
+    Error.prepareStackTrace = prepareStackTrace;
+  }
+  if (option.hasOwnProperty('empty')) emptyCacheBetweenOperations = option.empty
 }

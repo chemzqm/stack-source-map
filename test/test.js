@@ -1,5 +1,5 @@
 /*global describe, it*/
-require('..')
+require('..')()
 var assert = require('assert')
 
 describe('fail', function() {
