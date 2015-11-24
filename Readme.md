@@ -5,10 +5,10 @@ Attamp to make error stack works with source-map in browser, only Chrome support
 
 The code mostly from [evanw/node-source-map-support](https://github.com/evanw/node-source-map-support), but simplified to works with browser only and fixed to support all source map mode of [webpack](https://webpack.github.io/docs/configuration.html#devtool)
 
+Basically, it's some kind hack of v8 [message.js](https://code.google.com/p/v8/source/browse/trunk/src/messages.js)
+
 May not works with babel yet,  need more work.
 
-
-TODO: some test
 
 ## Install
 
@@ -17,5 +17,12 @@ TODO: some test
 ## Usage
 
 ``` js
-require('stack-source-map')
+require('stack-source-map')()
 ```
+
+## API
+
+### stackSourceMap(option)
+
+* `option.empty` empty cache between operations if true, default false
+
