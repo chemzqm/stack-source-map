@@ -7,7 +7,7 @@ The code mostly from [evanw/node-source-map-support](https://github.com/evanw/no
 
 Basically, it's some kind hack of v8 [message.js](https://code.google.com/p/v8/source/browse/trunk/src/messages.js)
 
-May not works with babel yet,  need more work.
+Works with babel and webpack :smiley:
 
 
 ## Install
@@ -18,6 +18,16 @@ May not works with babel yet,  need more work.
 
 ``` js
 require('stack-source-map')()
+```
+
+## entry for webpack
+
+``` js
+var entry = [
+  'stack-source-map/register'
+  // other entries
+  ...
+]
 ```
 
 ## API
