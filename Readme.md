@@ -41,3 +41,7 @@ var entry = [
     npm install
     node server
     open http://localhost:8080/bundle
+
+## License
+
+MIT
