@@ -9,4 +9,7 @@ test:
 	@open http://localhost:3000/test/index.html
 	@serve
 
+standalone:
+	@webpack --config webpack.alone.js
+
 .PHONY: build test

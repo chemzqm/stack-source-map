@@ -226,6 +226,10 @@ function CallSiteToString() {
       fileLocation = this.getEvalOrigin();
       fileLocation += ', ';  // Expecting source position to follow.
     }
+    if (fileName && !/^http:/.test(fileName)) {
+      var root = location.protocol + '//' + location.host
+      fileName = root + (/^\//.test(fileName) ? fileName : '/' + fileName)
+    }
 
     if (fileName) {
       fileLocation += fileName;

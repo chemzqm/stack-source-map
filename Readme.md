@@ -30,6 +30,14 @@ var entry = [
 ]
 ```
 
+## Use standalond file
+
+Include file `stacksourmap.js` in your page, and add one line code:
+
+``` js
+StackSourceMap()
+```
+
 ## API
 
 ### stackSourceMap([option])
