@@ -21,6 +21,10 @@ function retrieveFile(path) {
     return fileContentsCache[path];
   }
 
+  if (/^\S+:\/\//.test(path) && !/^http(s)?:\/\//.test(path)) {
+    return null
+  }
+
   try {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', path, false);
